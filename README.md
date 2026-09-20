@@ -4,7 +4,7 @@
 [![R-CMD-check](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ParBayesianOptimization)](https://CRAN.R-project.org/package=ParBayesianOptimization)
 [![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/mltools)](https://CRAN.R-project.org/package=ParBayesianOptimization)
-[![Coverage Status](https://codecov.io/gh/novica/ParBayesianOptimization/branch/main/graph/badge.svg)](https://codecov.io/gh/novica/ParBayesianOptimization/branch/main)
+[![Coverage Status](https://codecov.io/gh/novica/ParBayesianOptimization/branch/main/graph/badge.svg)](https://app.codecov.io/gh/novica/ParBayesianOptimization/branch/main)
 
 # Parallelizable Bayesian Optimization
 

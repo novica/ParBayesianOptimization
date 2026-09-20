@@ -16,7 +16,7 @@ Maintenance of this package has been picked up by a new maintainer
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
 ## Downstream dependencies
 
