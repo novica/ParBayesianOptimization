@@ -3,14 +3,18 @@
 
 [![R-CMD-check](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ParBayesianOptimization)](https://CRAN.R-project.org/package=ParBayesianOptimization)
-[![DEV\_Version\_Badge](https://img.shields.io/badge/Dev-1.2.5-blue.svg)](https://CRAN.R-project.org/package=ParBayesianOptimization)
 [![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/mltools)](https://CRAN.R-project.org/package=ParBayesianOptimization)
-[![Coverage
-Status](https://codecov.io/gh/novica/ParBayesianOptimization/branch/master/graph/badge.svg)](https://codecov.io/gh/novica/ParBayesianOptimization/branch/master)
+[![Coverage Status](https://codecov.io/gh/novica/ParBayesianOptimization/branch/main/graph/badge.svg)](https://codecov.io/gh/novica/ParBayesianOptimization/branch/main)
 
 # Parallelizable Bayesian Optimization
 
 <img src='vignettes/icon.png' align = 'right' height="300" />
+
+> **Note:** CRAN archived this package on 2026-01-12 ("issues were not
+> corrected despite reminders") — the fatal check failure was a vignette
+> re-build error in `tuningHyperparameters.Rmd` that has since been fixed.
+> This fork continues maintenance under a new maintainer. See also this
+> [Reddit discussion](https://www.reddit.com/r/Rlanguage/comments/1pe1lm8/transferring_ownership_of_open_source_packages/).
 
 This README contains a thorough walkthrough of Bayesian optimization and
 the syntax needed to use this package, with simple and complex examples.

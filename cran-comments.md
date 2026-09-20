@@ -1,23 +1,30 @@
+## Background
+
+This package was archived on CRAN on 2026-01-12 ("issues were not corrected
+despite reminders"). The fatal check failure was an error re-building the
+`tuningHyperparameters` vignette: the example scoring function returned a
+non-scalar `nrounds` value, which crashed `bayesOpt()`'s initialization.
+That bug is fixed in this release.
+
+Maintenance of this package has been picked up by a new maintainer
+(novica); the original maintainer is credited as an author.
 
 ## Test environments
-* local Windows 10 x64, R 4.0.0
-* Windows Server 2008 R2 SP1 32/64 bit (Rhub)
-* Ubuntu Linux 16.04 LTS (Rhub)
-* Fedora Linux (Rhub)
-* Ubuntu 14.04.5, R 3.6.2 (travis-ci)
 
+* GitHub Actions: ubuntu-latest (devel, release, oldrel-1), macos-latest
+  (release), windows-latest (release)
 
 ## R CMD check results
-There were no errors or notes. Only warnings explained that I am the maintainer and the package is currently archived.
+
+0 errors | 0 warnings | 0 notes
 
 ## Downstream dependencies
+
 There are no downstream dependencies.
 
-## Changes
-#### Meta
-Package was removed because suggested package was not available on checking machine, which threw a warning when vignettes were built. Made vignettes and examples execution conditional on availability of suggested package. This doesn't affect the readability or educational value of the vignettes or examples.
+## Resubmission notes
 
-#### Documentation
-* Added missing value fields to .Rd files of exported functions, and improved the documentation of existing value fields. 
-* Added testable examples to all exported functions that were missing any. 
-* Reset any options that were changed by vignettes.
+This is a resubmission of a previously archived package. In addition to
+fixing the vignette-rebuild error that caused archival, vignettes were
+migrated from knitr/rmarkdown to Quarto to remove the package's dependency
+on a system pandoc installation during `R CMD check`.

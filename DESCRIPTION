@@ -4,13 +4,14 @@ Version: 1.2.5
 Authors@R: c(
     person("Novica", "Nakov", email = "nnovica@gmail.com", role = "cre"),
     person("Samuel", "Wilson", email = "samwilson303@gmail.com", role = "aut"))
-Description: Fast, flexible framework for implementing Bayesian optimization of model 
-	hyperparameters according to the methods described in Snoek et al. <arXiv:1206.2944>.
-	The package allows the user to run scoring function in parallel, save intermediary 
+Description: Fast, flexible framework for implementing Bayesian optimization of model
+	hyperparameters according to the methods described in Snoek et al. (2012)
+	<doi:10.48550/arXiv.1206.2944>.
+	The package allows the user to run scoring function in parallel, save intermediary
 	results, and tweak other aspects of the process to fully utilize the computing resources
 	available to the user.
-URL: https://github.com/AnotherSamWilson/ParBayesianOptimization
-BugReports: https://github.com/AnotherSamWilson/ParBayesianOptimization/issues
+URL: https://github.com/novica/ParBayesianOptimization
+BugReports: https://github.com/novica/ParBayesianOptimization/issues
 Depends: R (>= 3.4)
 Imports: data.table (>= 1.11.8), DiceKriging, stats, foreach, dbscan, lhs, crayon, ggplot2, ggpubr (>= 0.2.4)
 Suggests: knitr, xgboost, doParallel, testthat, quarto

@@ -3,7 +3,7 @@ name: Build pkgdown site
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - "*.md"
       - ".github/**"
