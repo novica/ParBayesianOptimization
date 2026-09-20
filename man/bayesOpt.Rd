@@ -153,7 +153,7 @@ process is repeated for a set number of iterations.
 \section{Vignettes}{
 
 
-It is highly recommended to read the \href{https://github.com/AnotherSamWilson/ParBayesianOptimization}{GitHub} for examples.
+It is highly recommended to read the \href{https://github.com/novica/ParBayesianOptimization}{GitHub} for examples.
 There are also several vignettes available from the official \href{https://CRAN.R-project.org/package=ParBayesianOptimization}{CRAN Listing}.
 }
 
