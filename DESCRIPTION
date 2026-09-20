@@ -1,6 +1,6 @@
 Package: ParBayesianOptimization
 Title: Parallel Bayesian Optimization of Hyperparameters
-Version: 1.2.5
+Version: 1.2.6
 Authors@R: c(
     person("Novica", "Nakov", email = "nnovica@gmail.com", role = "cre"),
     person("Samuel", "Wilson", email = "samwilson303@gmail.com", role = "aut"))
