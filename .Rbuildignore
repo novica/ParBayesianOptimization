@@ -1,0 +1,16 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^pkgdown$
+^docs$
+^\.travis\.yml$
+^\.github$
+^air\.toml$
+^jarl\.toml$
+^\.release-please-manifest\.json$
+^release-please-config\.json$
+^codecov\.yml$
+^CHANGELOG\.md$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
+^LICENSE\.md$
+^vignettes/\.quarto$
