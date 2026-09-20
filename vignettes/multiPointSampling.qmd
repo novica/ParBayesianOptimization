@@ -1,12 +1,10 @@
 ---
 title: "Sampling Multiple Parameter Sets at Once"
-author: "Samuel Wilson"
-date: "February 9, 2020"
-output: html_document
+output: html
 vignette: >
   %\VignetteIndexEntry{Sampling Multiple Parameter Sets at Once}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

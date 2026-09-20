@@ -1,0 +1,51 @@
+url: https://novica.github.io/ParBayesianOptimization/
+destination: docs
+template:
+  bootstrap: 5
+  bootswatch: simplex
+development:
+  mode: auto
+
+home:
+  strip_header: true
+  links:
+  - text: <i class="fas fa-question-circle"></i> Help and discussions
+    href: https://github.com/novica/ParBayesianOptimization/discussions
+
+navbar:
+  structure:
+    left:  [intro, articles, reference, news]
+    right: [search, github]
+  components:
+    intro:
+      text: Get Started
+      href: articles/functionMaximization.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/novica/ParBayesianOptimization
+      aria-label: GitHub
+
+articles:
+- title: Guides
+  desc: ~
+  contents:
+  - functionMaximization
+  - tuningHyperparameters
+  - multiPointSampling
+
+reference:
+- title: Optimization
+  desc: Run and extend a Bayesian optimization process.
+  contents:
+  - bayesOpt
+  - addIterations
+  - updateGP
+
+- title: Results
+  desc: Inspect and act on optimization results.
+  contents:
+  - getBestPars
+  - getLocalOptimums
+  - changeSaveFile
+  - plot.bayesOpt
+  - print.bayesOpt

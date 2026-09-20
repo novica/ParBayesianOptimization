@@ -1,12 +1,10 @@
 ---
 title: "Tuning Hyperparameters"
-author: "Samuel Wilson"
-date: "February 9, 2020"
-output: rmarkdown::html_vignette
+output: html
 vignette: >
   %\VignetteIndexEntry{Tuning Hyperparameters}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
