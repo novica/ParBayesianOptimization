@@ -17,5 +17,5 @@ Imports: data.table (>= 1.11.8), DiceKriging, stats, foreach, dbscan, lhs, crayo
 Suggests: knitr, xgboost, doParallel, testthat, quarto
 License: GPL-2
 Encoding: UTF-8
-RoxygenNote: 7.2.1
 VignetteBuilder: quarto
+Config/roxygen2/version: 8.0.0

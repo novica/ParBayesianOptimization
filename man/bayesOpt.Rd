@@ -176,7 +176,7 @@ Results <- bayesOpt(
   , gsPoints = 10
 )
 
-\dontrun{
+\donttest{
 # Example 2 - Hyperparameter Tuning in xgboost
 if (requireNamespace('xgboost', quietly = TRUE)) {
   library("xgboost")

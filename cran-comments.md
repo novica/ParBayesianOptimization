@@ -28,3 +28,5 @@ This is a resubmission of a previously archived package. In addition to
 fixing the vignette-rebuild error that caused archival, vignettes were
 migrated from knitr/rmarkdown to Quarto to remove the package's dependency
 on a system pandoc installation during `R CMD check`.
+
+Fixed roxygen2 for examples and printing/cat statements.
