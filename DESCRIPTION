@@ -18,4 +18,4 @@ Suggests: knitr, xgboost, doParallel, testthat, quarto
 License: GPL-2
 Encoding: UTF-8
 VignetteBuilder: quarto
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
