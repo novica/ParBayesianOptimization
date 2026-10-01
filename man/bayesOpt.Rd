@@ -206,7 +206,7 @@ if (requireNamespace('xgboost', quietly = TRUE)) {
     xgbcv <- xgb.cv(
          params = Pars
        , data = dtrain
-       , nround = 100
+       , nrounds = 100
        , folds = Folds
        , prediction = TRUE
        , showsd = TRUE
@@ -218,7 +218,7 @@ if (requireNamespace('xgboost', quietly = TRUE)) {
     return(
       list(
           Score = max(xgbcv$evaluation_log$test_auc_mean)
-        , nrounds = xgbcv$best_iteration
+        , nrounds = xgbcv$early_stop$best_iteration
       )
     )
   }
@@ -232,7 +232,7 @@ if (requireNamespace('xgboost', quietly = TRUE)) {
   ScoreResult <- bayesOpt(
       FUN = scoringFunction
     , bounds = bounds
-    , initPoints = 3
+    , initPoints = 4
     , iters.n = 2
     , iters.k = 1
     , acq = "ei"
