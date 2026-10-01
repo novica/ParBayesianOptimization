@@ -5,7 +5,7 @@
 #'
 #' @param x An object of class bayesOpt
 #' @param ... Passed to \code{ggarrange()} when plots are stacked.
-#' @importFrom ggplot2 ggplot aes_string xlab scale_color_discrete geom_point theme guides guide_legend margin element_text unit xlim ylab
+#' @importFrom ggplot2 ggplot aes .data xlab scale_color_discrete geom_point theme guides guide_legend margin element_text unit xlim ylab
 #' @importFrom ggpubr ggarrange annotate_figure text_grob
 #' @importFrom graphics plot
 #' @return an object of class \code{ggarrange} from the \code{ggpubr} package.
@@ -36,7 +36,7 @@ plot.bayesOpt <- function(x, ...) {
   # Score Plot
   sc <- ggplot(
     scoreSummary,
-    aes_string(x = "Epoch", y = "Score", color = "acqOptimum")
+    aes(x = .data$Epoch, y = .data$Score, color = .data$acqOptimum)
   ) +
     geom_point() +
     xlab("") +
@@ -60,7 +60,7 @@ plot.bayesOpt <- function(x, ...) {
   # Utility Plot
   ut <- ggplot(
     scoreSummary[!is.na(get("gpUtility")), ],
-    aes_string(x = "Epoch", y = "gpUtility", color = "acqOptimum")
+    aes(x = .data$Epoch, y = .data$gpUtility, color = .data$acqOptimum)
   ) +
     geom_point() +
     xlim(c(0, max(scoreSummary$Epoch))) +

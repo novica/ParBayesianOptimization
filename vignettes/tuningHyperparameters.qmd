@@ -91,7 +91,7 @@ scoringFunction <- function(max_depth, min_child_weight, subsample) {
   Score     <- as.numeric(max(score_vec, na.rm = TRUE))[1]
 
   # Derive a scalar "best nrounds" robustly
-  bi <- xgbcv$best_iteration
+  bi <- xgbcv$early_stop$best_iteration
   if (is.null(bi) || length(bi) != 1 || is.na(bi)) {
     # fallback: the iteration where test AUC is maximized
     bi <- which.max(score_vec)

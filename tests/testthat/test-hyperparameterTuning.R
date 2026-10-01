@@ -97,7 +97,7 @@ testthat::test_that("xgboost", {
     Score <- as.numeric(max(score_vec, na.rm = TRUE))[1]
 
     # ---- Scalar best nrounds ----
-    bi <- xgbcv$best_iteration
+    bi <- xgbcv$early_stop$best_iteration
     if (is.null(bi) || length(bi) != 1L || is.na(bi)) {
       bi <- which.max(score_vec)
       if (length(bi) != 1L || is.na(bi)) bi <- 1L
