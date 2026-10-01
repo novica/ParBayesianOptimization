@@ -29,67 +29,73 @@
 #' # This plot will also show in real time with parameter plotProgress = TRUE in bayesOpt()
 #' plot(Results)
 #' @export
-plot.bayesOpt <- function(x,...) {
-
+plot.bayesOpt <- function(x, ...) {
   acqN <- getAcqInfo(x$optPars$acq)
-  scoreSummary <- x$scoreSummary[!is.na(get("Score")),]
+  scoreSummary <- x$scoreSummary[!is.na(get("Score")), ]
 
   # Score Plot
-  sc <- ggplot(scoreSummary,aes_string(x="Epoch",y="Score",color="acqOptimum")) +
+  sc <- ggplot(
+    scoreSummary,
+    aes_string(x = "Epoch", y = "Score", color = "acqOptimum")
+  ) +
     geom_point() +
     xlab("") +
-    scale_color_discrete(drop=TRUE,limits=c(TRUE,FALSE)) +
+    scale_color_discrete(drop = TRUE, limits = c(TRUE, FALSE)) +
     theme(
-        legend.position = 'bottom'
-      , legend.spacing.x = unit(0.6, 'cm')
-      , legend.text = element_text(margin = margin(t = 1))
-      , legend.margin = margin(t = 0,b=10)
-      , plot.margin=unit(c(1,1,0,0), units="line")
+      legend.position = 'bottom',
+      legend.spacing.x = unit(0.6, 'cm'),
+      legend.text = element_text(margin = margin(t = 1)),
+      legend.margin = margin(t = 0, b = 10),
+      plot.margin = unit(c(1, 1, 0, 0), units = "line")
     ) +
-    guides(color = guide_legend(
-        title = "Local\nOptimum"
-      , label.position = "bottom"
-      , title.position = "left"
-      , title.hjust = 1
+    guides(
+      color = guide_legend(
+        title = "Local\nOptimum",
+        label.position = "bottom",
+        title.position = "left",
+        title.hjust = 1
       )
     )
 
   # Utility Plot
-  ut <- ggplot(scoreSummary[!is.na(get("gpUtility")),],aes_string(x="Epoch",y="gpUtility",color="acqOptimum")) +
+  ut <- ggplot(
+    scoreSummary[!is.na(get("gpUtility")), ],
+    aes_string(x = "Epoch", y = "gpUtility", color = "acqOptimum")
+  ) +
     geom_point() +
-    xlim(c(0,max(scoreSummary$Epoch))) +
+    xlim(c(0, max(scoreSummary$Epoch))) +
     ylab("Utility") +
-    scale_color_discrete(drop=TRUE,limits=c(TRUE,FALSE)) +
+    scale_color_discrete(drop = TRUE, limits = c(TRUE, FALSE)) +
     theme(
-      legend.position = 'bottom'
-      , legend.spacing.x = unit(0.6, 'cm')
-      , legend.text = element_text(margin = margin(t = 1))
-      , legend.margin = margin(t = 0,b=10)
-      , plot.margin=unit(c(0,1,1,0), units="line")
+      legend.position = 'bottom',
+      legend.spacing.x = unit(0.6, 'cm'),
+      legend.text = element_text(margin = margin(t = 1)),
+      legend.margin = margin(t = 0, b = 10),
+      plot.margin = unit(c(0, 1, 1, 0), units = "line")
     ) +
-    guides(color = guide_legend(
-      title = "Local\nOptimum"
-      , label.position = "bottom"
-      , title.position = "left"
-      , title.hjust = 1
+    guides(
+      color = guide_legend(
+        title = "Local\nOptimum",
+        label.position = "bottom",
+        title.position = "left",
+        title.hjust = 1
       )
     )
 
   gga <- ggarrange(
-      sc
-    , ut
-    , align = "v"
-    , ncol=1
-    , common.legend = TRUE
-    , legend = "bottom"
-    , ...
+    sc,
+    ut,
+    align = "v",
+    ncol = 1,
+    common.legend = TRUE,
+    legend = "bottom",
+    ...
   )
 
   print(
     annotate_figure(
-        gga
-      , top = text_grob(label = "Bayesian Optimization Results")
+      gga,
+      top = text_grob(label = "Bayesian Optimization Results")
     )
   )
-
 }

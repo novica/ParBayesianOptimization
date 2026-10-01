@@ -1,2 +1,5 @@
 [lint]
 default-exclude = true
+# Disabled until jarl pairs \donttest{ with its own closing brace;
+# it currently reports false unreachable_code in the bayesOpt() example.
+check-roxygen = false
