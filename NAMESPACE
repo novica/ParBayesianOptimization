@@ -31,7 +31,8 @@ importFrom(data.table,
 )
 importFrom(dbscan,dbscan)
 importFrom(ggplot2,
-  aes_string,
+  .data,
+  aes,
   element_text,
   geom_point,
   ggplot,
