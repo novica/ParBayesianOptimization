@@ -1,5 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![R-CMD-check](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ParBayesianOptimization)](https://CRAN.R-project.org/package=ParBayesianOptimization)
@@ -8,7 +7,7 @@
 
 # Parallelizable Bayesian Optimization
 
-<img src='vignettes/icon.png' align = 'right' height="300" />
+<img src='man/figures/logo.png' align = 'right' height="300" />
 
 > **Note:** CRAN archived [this package](https://github.com/AnotherSamWilson/ParBayesianOptimization) on 2026-01-12 ("issues were not
 > corrected despite reminders") — the fatal check failure was a vignette
@@ -84,7 +83,7 @@ in the following process:
 
 <center>
 
-<img src="vignettes/gpParBayesAnimationSmall.gif" style="display: block; margin: auto;" />
+<img src="man/figures/gpParBayesAnimationSmall.gif" style="display: block; margin: auto;" />
 
 </center>
 
@@ -117,7 +116,7 @@ well as the uncertainty bands:
 
 <center>
 
-<img src="vignettes/round1.png" width="648px" style="display: block; margin: auto;" />
+<img src="man/figures/round1.png" width="648px" style="display: block; margin: auto;" />
 
 </center>
 
@@ -139,7 +138,7 @@ follows:
 
 <center>
 
-<img src="vignettes/UtilityFunctions.png" width="648" style="display: block; margin: auto;" />
+<img src="man/figures/UtilityFunctions.png" width="648" style="display: block; margin: auto;" />
 
 </center>
 
