@@ -32,7 +32,7 @@ test_that("Exhaust Parameter Space", {
 
   expect_equal(
     Results$stopStatus,
-    ParBayesianOptimization:::makeStopEarlyMessage(
+    makeStopEarlyMessage(
       paste0(
         "Noise could not be added to find unique parameter set. ",
         "Stopping process and returning results so far."

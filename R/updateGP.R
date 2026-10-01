@@ -54,7 +54,7 @@ updateGP <- function(optObj, bounds = optObj$bounds, verbose = 1, ...) {
 
     # Attempt to get a GP with nonzero lengthscale parameters
 
-    while (TRUE) {
+    repeat {
       sgp <- tryCatch(
         {
           km(

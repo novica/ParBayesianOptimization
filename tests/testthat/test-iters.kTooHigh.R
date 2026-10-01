@@ -32,7 +32,7 @@ test_that("Cannot get unique iters.k parameters.", {
 
   expect_equal(
     Results$stopStatus,
-    ParBayesianOptimization:::makeStopEarlyMessage(
+    makeStopEarlyMessage(
       paste0(
         "Stopping process and returning results so far. ",
         "Could not apply noise to get enough random new parameter sets. ",

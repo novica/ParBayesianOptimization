@@ -60,7 +60,7 @@ testthat::test_that("Error Limit", {
 
   expect_equal(
     optObj$stopStatus,
-    ParBayesianOptimization:::makeStopEarlyMessage(
+    makeStopEarlyMessage(
       "Errors from FUN exceeded errorHandling limit"
     )
   )
@@ -95,7 +95,7 @@ testthat::test_that("1D Error Handling", {
 
   expect_equal(
     optObj$stopStatus,
-    ParBayesianOptimization:::makeStopEarlyMessage(
+    makeStopEarlyMessage(
       "Errors from FUN exceeded errorHandling limit"
     )
   )

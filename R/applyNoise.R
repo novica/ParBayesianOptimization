@@ -8,7 +8,7 @@ applyNoise <- function(
   tries <- 1
   noiseAdd <- 0.04
 
-  while (TRUE) {
+  repeat {
     noiseAdd <- noiseAdd + 0.01
 
     noiseList <- lapply(
@@ -48,7 +48,7 @@ applyNoise <- function(
   }
 
   if (!identical(names(tabl), boundsDT$N)) {
-    noiseList <- cbind(noiseList, tabl[, -boundsDT$N, with = F])
+    noiseList <- cbind(noiseList, tabl[, -boundsDT$N, with = FALSE])
   }
   setnames(noiseList, names(tabl))
   return(noiseList)

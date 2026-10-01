@@ -67,7 +67,7 @@ getLocalOptimums <- function(
     localTryMM <- minMaxScale(localTries, boundsDT)
 
     LocalOptims <- foreach(
-      notI = 1:nrow(localTryMM),
+      notI = seq_len(nrow(localTryMM)),
       .combine = 'rbind',
       .inorder = TRUE,
       .errorhandling = 'pass',
@@ -128,7 +128,7 @@ getLocalOptimums <- function(
       }
       continue <- FALSE
     } else if (
-      max(LocalOptims$gpUtility) < acqN$base | !any(LocalOptims$gradCount > 2)
+      max(LocalOptims$gpUtility) < acqN$base || !any(LocalOptims$gradCount > 2)
     ) {
       if (verbose > 0) {
         cat(

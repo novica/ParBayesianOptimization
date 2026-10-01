@@ -26,7 +26,7 @@ testthat::test_that("timeLimit", {
 
   expect_equal(
     optObj$stopStatus,
-    ParBayesianOptimization:::makeStopEarlyMessage("Time Limit - 5 seconds.")
+    makeStopEarlyMessage("Time Limit - 5 seconds.")
   )
 })
 
@@ -54,7 +54,7 @@ testthat::test_that("minUtility", {
 
   expect_equal(
     optObj$stopStatus,
-    ParBayesianOptimization:::makeStopEarlyMessage(
+    makeStopEarlyMessage(
       "Returning Results. Could not meet minimum required (0.1) utility."
     )
   )

@@ -258,7 +258,7 @@ bayesOpt <- function(
     setDT(initGrid)
     inBounds <- checkBounds(initGrid, bounds)
     inBounds <- as.logical(apply(inBounds, 1, prod))
-    if (any(!inBounds)) {
+    if (!all(inBounds)) {
       stop("initGrid not within bounds.")
     }
     optObj$initPars$initialSample <- "User Provided Grid"
@@ -306,9 +306,9 @@ bayesOpt <- function(
     )
   }
   sink(file = sinkFile)
-  tm <- system.time(
+  tm <- system.time({
     scoreSummary <- foreach(
-      iter = 1:nrow(initGrid),
+      iter = seq_len(nrow(initGrid)),
       .options.multicore = list(preschedule = FALSE),
       .combine = list,
       .multicombine = TRUE,
@@ -319,14 +319,14 @@ bayesOpt <- function(
     ) %op%
       {
         Params <- initGrid[get("iter"), ]
-        Elapsed <- system.time(
+        Elapsed <- system.time({
           Result <- tryCatch(
             {
               do.call(what = FUN, args = as.list(Params))
             },
             error = function(e) e
           )
-        )
+        })
 
         # Make sure everything was returned in the correct format. Any errors here will be passed.
         if (any(class(Result) %in% c("simpleError", "error", "condition"))) {
@@ -352,7 +352,7 @@ bayesOpt <- function(
 
         data.table(Params, Elapsed = Elapsed[[3]], as.data.table(Result))
       }
-  )[[3]]
+  })[[3]]
   while (sink.number() > 0) {
     sink()
   }
@@ -381,7 +381,7 @@ bayesOpt <- function(
   scoreSummary[, ("gpUtility") := rep(as.numeric(NA), nrow(scoreSummary))]
   scoreSummary[, ("acqOptimum") := rep(FALSE, nrow(scoreSummary))]
   scoreSummary[, ("Epoch") := rep(0, nrow(scoreSummary))]
-  scoreSummary[, ("Iteration") := 1:nrow(scoreSummary)]
+  scoreSummary[, ("Iteration") := seq_len(nrow(scoreSummary))]
   scoreSummary[, ("inBounds") := rep(TRUE, nrow(scoreSummary))]
   scoreSummary[, ("errorMessage") := rep(NA, nrow(scoreSummary))]
   extraRet <- setdiff(
@@ -413,7 +413,7 @@ bayesOpt <- function(
   )
 
   # System.time function is not terribly precise for very small elapsed times.
-  if (any(scoreSummary$Elapsed < 1) & acq == "eips") {
+  if (any(scoreSummary$Elapsed < 1) && acq == "eips") {
     warning("FUN elapsed time is too low to be precise. Switching acq to 'ei'.")
     acq <- 'ei'
   }

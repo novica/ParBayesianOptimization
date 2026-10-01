@@ -45,7 +45,7 @@ getNextParameters <- function(
     # Obtain required number of candidate parameter sets. We add noise to these.
     procure <- runNew - nrow(returnParameters)
     candidateParameters <- minMaxScale(
-      LocalOptims[rep(1:nrow(LocalOptims), length.out = procure), ],
+      LocalOptims[rep(seq_len(nrow(LocalOptims)), length.out = procure), ],
       boundsDT
     )
     candidateParameters$acqOptimum <- FALSE
@@ -53,7 +53,7 @@ getNextParameters <- function(
     # This is not expensive, so tries is large.
     # Attempt to obtain unique parameter sets by adding noise.
     tries <- 1
-    while (procure > 0 & tries <= 1000) {
+    while (procure > 0 && tries <= 1000) {
       if (tries >= 1000) {
         return(
           makeStopEarlyMessage(
@@ -100,7 +100,7 @@ getNextParameters <- function(
       )
 
       # If we obtained any unique parameter sets:
-      if (any(!fromNoise$Duplicate)) {
+      if (!all(fromNoise$Duplicate)) {
         returnParameters <- rbind(
           returnParameters,
           fromNoise[!fromNoise$Duplicate],

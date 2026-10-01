@@ -115,7 +115,7 @@ addIterations <- function(
   # Check if bounds supplied can be used with prior parameter-score pairs.
   inBounds <- checkBounds(optObj$scoreSummary, bounds)
   scoreSummary$inBounds <- as.logical(apply(inBounds, 1, prod))
-  if (any(!scoreSummary$inBounds)) {
+  if (!all(scoreSummary$inBounds)) {
     message(
       "Bounds have been tightened. There are ",
       sum(!scoreSummary$inBounds),
@@ -170,14 +170,14 @@ addIterations <- function(
     if (verbose > 0) {
       cat("  2) Running local optimum search...")
     }
-    tm <- system.time(
+    tm <- system.time({
       LocalOptims <- getLocalOptimums(
         optObj,
         bounds = bounds,
         parallel = parallel,
         verbose = verbose
       )
-    )[[3]]
+    })[[3]]
     if (verbose > 0) {
       cat("       ", tm, "seconds\n")
     }
@@ -237,9 +237,9 @@ addIterations <- function(
       )
     }
     sink(file = sinkFile)
-    tm <- system.time(
+    tm <- system.time({
       NewResults <- foreach(
-        iter = 1:nrow(nextPars),
+        iter = seq_len(nrow(nextPars)),
         .options.multicore = list(preschedule = FALSE),
         .combine = rbindFE,
         .multicombine = TRUE,
@@ -249,14 +249,14 @@ addIterations <- function(
       ) %op%
         {
           Params <- nextPars[get("iter"), boundsDT$N, with = FALSE]
-          Elapsed <- system.time(
+          Elapsed <- system.time({
             Result <- tryCatch(
               {
                 do.call(what = FUN, args = as.list(Params))
               },
               error = function(e) e
             )
-          )
+          })
 
           # Handle the Result.
           if (any(class(Result) %in% c("simpleError", "error", "condition"))) {
@@ -294,7 +294,7 @@ addIterations <- function(
             }
           }
         }
-    )[[3]]
+    })[[3]]
     while (sink.number() > 0) {
       sink()
     }
@@ -346,7 +346,7 @@ addIterations <- function(
         scoreSummary,
         data.table(
           "Epoch" = rep(Epoch, nrow(NewResults)),
-          "Iteration" = 1:nrow(NewResults) + nrow(scoreSummary),
+          "Iteration" = seq_len(nrow(NewResults)) + nrow(scoreSummary),
           "inBounds" = rep(TRUE, nrow(NewResults)),
           NewResults
         )
