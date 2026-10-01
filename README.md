@@ -18,7 +18,8 @@
 
 This README contains a thorough walkthrough of Bayesian optimization and
 the syntax needed to use this package, with simple and complex examples.
-More information can be found in the package vignettes and manual.
+More information can be found in the package vignettes, manual, and [this 
+article on TDS](https://towardsdatascience.com/a-parallel-implementation-of-bayesian-optimization-2ffcdb2733a2/).
 
 ## Table of Contents
 
