@@ -14,3 +14,4 @@
 ^CRAN-SUBMISSION$
 ^LICENSE\.md$
 ^vignettes/\.quarto$
+^CITATION\.cff$

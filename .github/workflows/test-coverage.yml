@@ -7,10 +7,16 @@ on:
     paths-ignore:
       - "*.md"
       - ".github/**"
-      - "*.json "
-      - "*.toml "
+      - ".release-please-manifest.json"
+      - "release-please-config.json"
+      - "pkgdown/_pkgdown.yml"
+      - "CITATION.cff"
 
 permissions: read-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test-coverage:
