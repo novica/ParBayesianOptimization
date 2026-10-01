@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "ParBayesianOptimization: Parallel Bayesian Optimization of Hyperparameters"
+abstract: >-
+  Fast, flexible framework for implementing Bayesian optimization of model
+  hyperparameters according to the methods described in Snoek et al. (2012).
+  The package allows the user to run scoring function in parallel, save
+  intermediary results, and tweak other aspects of the process to fully
+  utilize the computing resources available to the user.
+authors:
+  - family-names: Wilson
+    given-names: Samuel
+    email: samwilson303@gmail.com
+  - family-names: Nakov
+    given-names: Novica
+    email: nnovica@gmail.com
+version: 1.3.0 # x-release-please-version
+date-released: 2026-09-20
+license: GPL-2.0-only
+url: "https://novica.github.io/ParBayesianOptimization/"
+repository-code: "https://github.com/novica/ParBayesianOptimization"
+repository: "https://CRAN.R-project.org/package=ParBayesianOptimization"
+keywords:
+  - R
+  - bayesian-optimization
+  - hyperparameter-tuning
+  - gaussian-process
+references:
+  - type: article
+    title: "Practical Bayesian Optimization of Machine Learning Algorithms"
+    authors:
+      - family-names: Snoek
+        given-names: Jasper
+      - family-names: Larochelle
+        given-names: Hugo
+      - family-names: Adams
+        given-names: Ryan P.
+    year: 2012
+    doi: 10.48550/arXiv.1206.2944
