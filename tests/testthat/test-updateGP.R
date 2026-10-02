@@ -39,10 +39,7 @@ test_that("updateGP() returns early when the GP is up to date", {
 })
 
 test_that("a km() error stops the process instead of failing", {
-  # km() prints the valid covariance types before it fails.
-  utils::capture.output(
-    optObj <- updateGP(fakeOptObj(), covtype = "nonsense")
-  )
+  optObj <- updateGP(fakeOptObj(), foo = 1)
 
   expect_s3_class(optObj$stopStatus, "stopEarlyMsg")
   expect_match(optObj$stopStatus, "Error encountered while training GP")
