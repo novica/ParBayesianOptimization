@@ -1,5 +1,3 @@
-context('Hyperparameter Tuning')
-
 testthat::test_that("xgboost", {
   skip_on_cran()
   skip_if_not_installed("xgboost")

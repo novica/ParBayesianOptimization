@@ -1,5 +1,3 @@
-context('errorHandling')
-
 testthat::test_that("continue", {
   skip_on_cran()
   set.seed(10)

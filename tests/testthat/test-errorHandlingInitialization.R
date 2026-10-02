@@ -1,5 +1,3 @@
-context('errorHandling')
-
 testthat::test_that("Error in FUN - Initialization", {
   skip_on_cran()
   set.seed(10)
