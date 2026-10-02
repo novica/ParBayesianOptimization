@@ -1,5 +1,3 @@
-context('otherHalting')
-
 set.seed(1991)
 
 testthat::test_that("timeLimit", {
