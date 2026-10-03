@@ -17,7 +17,7 @@ BugReports: https://github.com/novica/ParBayesianOptimization/issues
 Depends: 
     R (>= 4.1)
 Imports: 
-    crayon,
+    cli,
     data.table (>= 1.11.8),
     dbscan,
     DiceKriging,
