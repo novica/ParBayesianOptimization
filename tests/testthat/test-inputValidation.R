@@ -68,7 +68,9 @@ test_that("addIterations() rejects objects it cannot continue", {
         Epoch = 0,
         x = c(0, 0.5),
         y = c(0, 0.5),
-        Score = c(0, -0.5)
+        Score = c(0, -0.5),
+        inBounds = TRUE,
+        errorMessage = NA_character_
       )
     ),
     class = "bayesOpt"
