@@ -242,7 +242,20 @@ checkKmArgs <- function(...) {
   # they claim their formals first.
   kmArgs <- names(formals(DiceKriging::km))
   matched <- pmatch(c("design", "response", "control", argNames), kmArgs)
-  bad <- argNames[is.na(matched[-(1:3)])]
+  unmatched <- is.na(matched[-(1:3)])
+  # Names that match a formal only when it may be used twice collide with
+  # another argument; the rest are not km() arguments at all.
+  collides <- unmatched &
+    !is.na(pmatch(argNames, kmArgs, duplicates.ok = TRUE)) &
+    argNames != ""
+  if (any(collides)) {
+    stop(
+      "Arguments in ... match a DiceKriging::km() argument that is already ",
+      "supplied or set by updateGP() (design, response, control): ",
+      paste(argNames[collides], collapse = ", ")
+    )
+  }
+  bad <- argNames[unmatched]
   if (length(bad) > 0) {
     bad[bad == ""] <- "<unnamed>"
     stop(
