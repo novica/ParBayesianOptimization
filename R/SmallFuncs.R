@@ -186,8 +186,15 @@ checkParameters <- function(
   if (iters.n %% 1 != 0 || iters.k %% 1 != 0) {
     stop("iters.n and iters.k must be integers.")
   }
-  if (!any(acq == c("ucb", "ei", "eips", "poi"))) {
-    stop("Acquisition function not recognized")
+  if (
+    !is.character(acq) ||
+      length(acq) != 1 ||
+      !acq %in% c("ucb", "ei", "eips", "poi")
+  ) {
+    stop(
+      "Acquisition function not recognized. ",
+      "acq must be one of \"ucb\", \"ei\", \"eips\" or \"poi\"."
+    )
   }
   if (parallel && (getDoParWorkers() == 1)) {
     stop("parallel is set to TRUE but no back end is registered.\n")
