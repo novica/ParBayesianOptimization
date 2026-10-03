@@ -221,7 +221,10 @@ bayesOpt <- function(
   ...
 ) {
   startT <- Sys.time()
-  acq <- match.arg(acq)
+  # The signature lists the options; checkParameters() validates them.
+  if (missing(acq)) {
+    acq <- "ucb"
+  }
 
   # Construct bayesOpt list
   optObj <- list()

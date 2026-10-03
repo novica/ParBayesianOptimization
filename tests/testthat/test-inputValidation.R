@@ -100,9 +100,11 @@ test_that("misspelled arguments are caught before FUN runs", {
   expect_error(checkKmArgs(control = list()), "does not accept: control")
 })
 
-test_that("bayesOpt() lists the acquisition functions", {
-  expect_error(
-    bayesOpt(FUN, bounds, initPoints = 3, acq = "foo", verbose = 0),
-    "should be one of"
-  )
+test_that("bayesOpt() accepts only exact acq names", {
+  for (acq in list("foo", "eip", NULL, c("ucb", "ei"))) {
+    expect_error(
+      bayesOpt(FUN, bounds, initPoints = 3, acq = acq, verbose = 0),
+      "Acquisition function not recognized"
+    )
+  }
 })
