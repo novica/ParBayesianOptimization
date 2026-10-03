@@ -131,7 +131,7 @@ saveSoFar <- function(optObj, verbose) {
       },
       error = function(e) {
         if (verbose > 0) {
-          cat(red(
+          cat(cli::col_red(
             "  4) Failed to save intermediary results. Please check file path.\n"
           ))
         }
@@ -240,8 +240,8 @@ formatOtherHalting <- function(otherHalting) {
 }
 
 # When the process stops early it will print this color.
-#' @importFrom crayon make_style red
-returnEarly <- crayon::make_style("#FF6200")
+# Built on each call so it uses the colours of the current terminal.
+returnEarly <- function(...) cli::make_ansi_style("#FF6200")(...)
 
 # Constructor for stopEarlyMsg class.
 makeStopEarlyMessage <- function(msg) {
