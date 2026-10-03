@@ -47,9 +47,10 @@ test_that("bayesOpt() leaves the user's sinks open", {
   skip_on_cran()
 
   log <- withr::local_tempfile()
+  outerSinks <- sink.number()
   sink(log)
   withr::defer(
-    while (sink.number() > 0) {
+    while (sink.number() > outerSinks) {
       sink()
     }
   )

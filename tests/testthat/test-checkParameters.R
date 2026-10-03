@@ -25,6 +25,7 @@ test_that("invalid parameters are errors", {
   expect_error(checkArgs(iters.n = 4.5), "must be integers")
   expect_error(checkArgs(iters.k = 1.5), "must be integers")
   expect_error(checkArgs(acq = "foo"), "Acquisition function not recognized")
+  foreach::registerDoSEQ()
   expect_error(checkArgs(parallel = TRUE), "no back end is registered")
   expect_error(
     checkArgs(otherHalting = list(foo = 1)),

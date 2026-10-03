@@ -1,40 +1,48 @@
-design <- data.frame(x = c(0, 0.25, 0.5, 0.75, 1))
-scoreGP <- DiceKriging::km(
-  design = design,
-  response = sin(3 * design$x),
-  control = list(trace = 0)
-)
-timeGP <- DiceKriging::km(
-  design = design,
-  response = c(0.2, 0.4, 0.6, 0.8, 1),
-  control = list(trace = 0)
-)
-
-par <- c(x = 0.6)
-pred <- predict(scoreGP, data.frame(x = 0.6), type = "SK")
-y_max <- max(sin(3 * design$x))
-kappa <- 2.576
-eps <- 0.01
-z <- (pred$mean - y_max - eps) / pred$sd
-ei <- (pred$mean - y_max - eps) * pnorm(z) + pred$sd * dnorm(z)
-
-acq <- function(type) {
-  calcAcq(par, scoreGP, timeGP, type, y_max, kappa, eps)
+fitGPs <- function() {
+  design <- data.frame(x = c(0, 0.25, 0.5, 0.75, 1))
+  list(
+    score = DiceKriging::km(
+      design = design,
+      response = sin(3 * design$x),
+      control = list(trace = 0)
+    ),
+    time = DiceKriging::km(
+      design = design,
+      response = c(0.2, 0.4, 0.6, 0.8, 1),
+      control = list(trace = 0)
+    ),
+    y_max = max(sin(3 * design$x))
+  )
 }
 
-test_that("ucb is the mean plus kappa standard deviations", {
-  expect_equal(acq("ucb"), pred$mean + kappa * pred$sd)
+par <- c(x = 0.6)
+kappa <- 2.576
+eps <- 0.01
+
+acq <- function(gps, type, y_max = gps$y_max, k = kappa) {
+  calcAcq(par, gps$score, gps$time, type, y_max, k, eps)
+}
+
+test_that("each acquisition function matches its formula", {
+  gps <- fitGPs()
+  pred <- predict(gps$score, data.frame(x = 0.6), type = "SK")
+  timePred <- predict(gps$time, data.frame(x = 0.6), type = "SK")
+  z <- (pred$mean - gps$y_max - eps) / pred$sd
+  ei <- (pred$mean - gps$y_max - eps) * pnorm(z) + pred$sd * dnorm(z)
+
+  expect_equal(acq(gps, "ucb"), pred$mean + kappa * pred$sd)
+  expect_equal(acq(gps, "ei"), ei)
+  expect_equal(acq(gps, "eips"), ei / timePred$mean)
+  expect_equal(acq(gps, "poi"), pnorm(z))
 })
 
-test_that("ei is the expected improvement over y_max", {
-  expect_equal(acq("ei"), ei)
-})
+test_that("acquisition functions behave as expected", {
+  gps <- fitGPs()
 
-test_that("eips divides ei by the predicted time", {
-  timePred <- predict(timeGP, data.frame(x = 0.6), type = "SK")
-  expect_equal(acq("eips"), ei / timePred$mean)
-})
-
-test_that("poi is the probability of improvement over y_max", {
-  expect_equal(acq("poi"), pnorm(z))
+  expect_gte(acq(gps, "ei"), 0)
+  expect_gte(acq(gps, "poi"), 0)
+  expect_lte(acq(gps, "poi"), 1)
+  expect_gt(acq(gps, "ucb", k = 3), acq(gps, "ucb", k = 1))
+  expect_lt(acq(gps, "ei", y_max = 2), acq(gps, "ei", y_max = 1))
+  expect_lt(acq(gps, "poi", y_max = 2), acq(gps, "poi", y_max = 1))
 })
