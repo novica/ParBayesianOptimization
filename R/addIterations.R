@@ -126,8 +126,17 @@ addIterations <- function(
       call. = FALSE
     )
   }
-  if (nrow(scoreSummary) <= 2) {
-    stop("Not enough samples in scoreSummary to perform optimizations.")
+  # updateGP() fits only on rows flagged inBounds, so store the new flags and
+  # refit if any changed.
+  if (!identical(optObj$scoreSummary$inBounds, scoreSummary$inBounds)) {
+    optObj$scoreSummary$inBounds <- scoreSummary$inBounds
+    optObj$GauProList$gpUpToDate <- FALSE
+  }
+  if (sum(scoreSummary$inBounds & is.na(scoreSummary$errorMessage)) <= 2) {
+    stop(
+      "Not enough samples in scoreSummary to perform optimizations. ",
+      "At least 3 error-free samples within bounds are needed."
+    )
   }
 
   # Output from FUN is sunk into a temporary file.

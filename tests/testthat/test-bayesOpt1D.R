@@ -67,14 +67,14 @@ test_that("bayesOpt() leaves the user's sinks open", {
   expect_equal(readLines(log), "after bayesOpt")
 })
 
-test_that("tighter bounds in addIterations() warn instead of prompting", {
+test_that("tighter bounds in addIterations() warn and exclude rows from the GP", {
   skip_on_cran()
   set.seed(1991)
 
   optObj <- bayesOpt(
     function(x) list(Score = -x^2),
     list(x = c(-5, 5)),
-    initPoints = 6,
+    initGrid = data.frame(x = c(-5, -4, -1, 0, 1, 4)),
     iters.n = 1,
     verbose = 0
   )
@@ -90,4 +90,25 @@ test_that("tighter bounds in addIterations() warn instead of prompting", {
   )
   expect_equal(optObj$stopStatus, "OK")
   expect_equal(nrow(optObj$scoreSummary), 8)
+
+  fitRows <- optObj$scoreSummary[1:7]
+  expect_equal(fitRows$inBounds, abs(fitRows$x) <= 3)
+  expect_equal(optObj$GauProList$scoreGP@n, sum(fitRows$inBounds))
+})
+
+test_that("addIterations() needs 3 usable samples within bounds", {
+  skip_on_cran()
+
+  optObj <- bayesOpt(
+    function(x) list(Score = -x^2),
+    list(x = c(-5, 5)),
+    initGrid = data.frame(x = c(-5, -4, 0, 4)),
+    iters.n = 1,
+    verbose = 0
+  )
+
+  expect_error(
+    suppressWarnings(addIterations(optObj, bounds = list(x = c(-1, 1)))),
+    "within bounds are needed"
+  )
 })
