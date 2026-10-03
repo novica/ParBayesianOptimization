@@ -279,10 +279,12 @@ bayesOpt <- function(
   }
 
   # Output from FUN is sunk into a temporary file.
+  # Only the sinks added here are removed; the user's own sinks stay open.
   sinkFile <- file()
+  userSinks <- sink.number()
   on.exit(
     {
-      while (sink.number() > 0) {
+      while (sink.number() > userSinks) {
         sink()
       }
       close(sinkFile)
@@ -355,7 +357,7 @@ bayesOpt <- function(
         data.table(Params, Elapsed = Elapsed[[3]], as.data.table(Result))
       }
   })[[3]]
-  while (sink.number() > 0) {
+  while (sink.number() > userSinks) {
     sink()
   }
   if (verbose > 0) {
