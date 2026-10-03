@@ -4,11 +4,11 @@
 #' The bottom shows the utility from each point before the search took place.
 #'
 #' @param x An object of class bayesOpt
-#' @param ... Passed to \code{ggarrange()} when plots are stacked.
+#' @param ... Passed to \code{patchwork::plot_layout()}.
 #' @importFrom ggplot2 ggplot aes .data xlab scale_color_discrete geom_point theme guides guide_legend margin element_text unit xlim ylab
-#' @importFrom ggpubr ggarrange annotate_figure text_grob
+#' @importFrom patchwork plot_layout plot_annotation
 #' @importFrom graphics plot
-#' @return an object of class \code{ggarrange} from the \code{ggpubr} package.
+#' @return A \code{patchwork} object, returned invisibly after printing.
 #' @examples
 #' scoringFunction <- function(x) {
 #'   a <- exp(-(2-x)^2)*1.5
@@ -82,20 +82,13 @@ plot.bayesOpt <- function(x, ...) {
       )
     )
 
-  gga <- ggarrange(
-    sc,
-    ut,
-    align = "v",
-    ncol = 1,
-    common.legend = TRUE,
-    legend = "bottom",
-    ...
-  )
+  p <- (sc / ut) +
+    plot_layout(ncol = 1, guides = "collect", ...) +
+    plot_annotation(
+      title = "Bayesian Optimization Results",
+      theme = theme(plot.title = element_text(hjust = 0.5))
+    ) &
+    theme(legend.position = "bottom")
 
-  print(
-    annotate_figure(
-      gga,
-      top = text_grob(label = "Bayesian Optimization Results")
-    )
-  )
+  print(p)
 }
