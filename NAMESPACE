@@ -46,12 +46,11 @@ importFrom(ggplot2,
   xlim,
   ylab
 )
-importFrom(ggpubr,
-  annotate_figure,
-  ggarrange,
-  text_grob
-)
 importFrom(graphics,plot)
+importFrom(patchwork,
+  plot_annotation,
+  plot_layout
+)
 importFrom(stats,
   dnorm,
   optim,

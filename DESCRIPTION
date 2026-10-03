@@ -23,9 +23,9 @@ Imports:
     DiceKriging,
     foreach,
     ggplot2,
-    ggpubr (>= 0.2.4),
     graphics,
     lhs,
+    patchwork,
     stats,
     utils
 Suggests: 
