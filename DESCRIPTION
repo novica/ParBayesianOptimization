@@ -22,7 +22,7 @@ Imports:
     dbscan,
     DiceKriging,
     foreach,
-    ggplot2,
+    ggplot2 (>= 3.3.0),
     graphics,
     lhs,
     patchwork,

@@ -267,7 +267,7 @@ scoringFunction <- function(max_depth, min_child_weight, subsample) {
   xgbcv <- xgb.cv(
       params = Pars
     , data = dtrain
-    , nround = 100
+    , nrounds = 100
     , folds = Folds
     , early_stopping_rounds = 5
     , maximize = TRUE
@@ -275,7 +275,7 @@ scoringFunction <- function(max_depth, min_child_weight, subsample) {
   )
 
   return(list(Score = max(xgbcv$evaluation_log$test_auc_mean)
-             , nrounds = xgbcv$best_iteration
+             , nrounds = xgbcv$early_stop$best_iteration
              )
          )
 }
