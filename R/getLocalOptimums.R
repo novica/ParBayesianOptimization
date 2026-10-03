@@ -40,7 +40,7 @@
 #' print(getLocalOptimums(Results))
 #' @importFrom stats optim
 #' @importFrom data.table as.data.table
-#' @import foreach
+#' @importFrom foreach foreach %do% %dopar% getDoParWorkers
 #' @export
 getLocalOptimums <- function(
   optObj,
