@@ -33,6 +33,8 @@
 #' Results <- updateGP(Results)
 #' @export
 updateGP <- function(optObj, bounds = optObj$bounds, verbose = 1, ...) {
+  checkKmArgs(...)
+
   if (optObj$GauProList$gpUpToDate) {
     if (verbose > 0) {
       message("Gaussian Processes are already up to date.")

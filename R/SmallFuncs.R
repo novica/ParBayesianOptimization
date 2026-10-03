@@ -223,6 +223,28 @@ checkParameters <- function(
   }
 }
 
+# Arguments in ... are passed to DiceKriging::km(). Catch misspelled or
+# unsupported names before FUN runs, instead of when the GP is fitted.
+checkKmArgs <- function(...) {
+  argNames <- names(list(...))
+  if (is.null(argNames) && ...length() > 0) {
+    argNames <- rep("", ...length())
+  }
+  allowed <- setdiff(
+    names(formals(DiceKriging::km)),
+    c("design", "response", "control")
+  )
+  bad <- argNames[!argNames %in% allowed]
+  if (length(bad) > 0) {
+    bad[bad == ""] <- "<unnamed>"
+    stop(
+      "Arguments in ... are passed to DiceKriging::km(), which does not accept: ",
+      paste(bad, collapse = ", "),
+      ". Check for misspelled arguments."
+    )
+  }
+}
+
 # Get the total time run of an object given the time it was started.
 totalTime <- function(optObj, startT) {
   optObj$elapsedTime + as.numeric(difftime(Sys.time(), startT, units = "secs"))
