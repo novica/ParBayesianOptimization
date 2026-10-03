@@ -42,3 +42,27 @@ test_that("1 Input, Different Specifications", {
 
   expect_equal(nrow(optObj$scoreSummary), 14)
 })
+
+test_that("bayesOpt() leaves the user's sinks open", {
+  skip_on_cran()
+
+  log <- withr::local_tempfile()
+  sink(log)
+  withr::defer(
+    while (sink.number() > 0) {
+      sink()
+    }
+  )
+
+  bayesOpt(
+    function(x) list(Score = -x^2),
+    list(x = c(-2, 2)),
+    initPoints = 3,
+    iters.n = 1,
+    verbose = 0
+  )
+  cat("after bayesOpt\n")
+  sink()
+
+  expect_equal(readLines(log), "after bayesOpt")
+})
