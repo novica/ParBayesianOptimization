@@ -43,6 +43,7 @@ test_that("acquisition functions behave as expected", {
   expect_gte(acq(gps, "poi"), 0)
   expect_lte(acq(gps, "poi"), 1)
   expect_gt(acq(gps, "ucb", k = 3), acq(gps, "ucb", k = 1))
-  expect_lt(acq(gps, "ei", y_max = 2), acq(gps, "ei", y_max = 1))
-  expect_lt(acq(gps, "poi", y_max = 2), acq(gps, "poi", y_max = 1))
+  # y_max near the predicted mean, so neither value underflows to 0.
+  expect_lt(acq(gps, "ei", y_max = 1), acq(gps, "ei", y_max = 0.9))
+  expect_lt(acq(gps, "poi", y_max = 1), acq(gps, "poi", y_max = 0.9))
 })

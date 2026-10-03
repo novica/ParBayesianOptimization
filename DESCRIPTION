@@ -31,9 +31,9 @@ Imports:
 Suggests: 
     knitr,
     quarto,
-    testthat (>= 3.1.5),
+    testthat (>= 3.1.8),
     withr,
-    xgboost
+    xgboost (>= 3.0.0)
 VignetteBuilder: 
     quarto
 Config/roxygen2/version: 8.1.0

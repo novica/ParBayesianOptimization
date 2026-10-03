@@ -1,6 +1,6 @@
 testthat::test_that("xgboost", {
   skip_on_cran()
-  skip_if_not_installed("xgboost")
+  skip_if_not_installed("xgboost", "3.0.0")
   library("xgboost")
   set.seed(0)
 

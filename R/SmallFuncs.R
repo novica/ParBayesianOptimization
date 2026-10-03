@@ -237,13 +237,25 @@ checkKmArgs <- function(...) {
   if (is.null(argNames) && ...length() > 0) {
     argNames <- rep("", ...length())
   }
-  # Match like R does: exact names or unique prefixes. design, response and
-  # control are always set by updateGP().
+  # Match like R does: exact names first, then unique prefixes, each formal
+  # at most once. updateGP() always sets design, response and control, so
+  # they claim their formals first.
   kmArgs <- names(formals(DiceKriging::km))
-  matched <- kmArgs[pmatch(argNames, kmArgs, duplicates.ok = TRUE)]
-  bad <- argNames[
-    is.na(matched) | matched %in% c("design", "response", "control")
-  ]
+  matched <- pmatch(c("design", "response", "control", argNames), kmArgs)
+  unmatched <- is.na(matched[-(1:3)])
+  # Names that match a formal only when it may be used twice collide with
+  # another argument; the rest are not km() arguments at all.
+  collides <- unmatched &
+    !is.na(pmatch(argNames, kmArgs, duplicates.ok = TRUE)) &
+    argNames != ""
+  if (any(collides)) {
+    stop(
+      "Arguments in ... match a DiceKriging::km() argument that is already ",
+      "supplied or set by updateGP() (design, response, control): ",
+      paste(argNames[collides], collapse = ", ")
+    )
+  }
+  bad <- argNames[unmatched]
   if (length(bad) > 0) {
     bad[bad == ""] <- "<unnamed>"
     stop(

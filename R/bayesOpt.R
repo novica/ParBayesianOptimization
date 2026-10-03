@@ -132,7 +132,8 @@
 #'
 #' \donttest{
 #' # Example 2 - Hyperparameter Tuning in xgboost
-#' if (requireNamespace('xgboost', quietly = TRUE)) {
+#' if (requireNamespace('xgboost', quietly = TRUE) &&
+#'     utils::packageVersion('xgboost') >= '3.0.0') {
 #'   library("xgboost")
 #'
 #'   data(agaricus.train, package = "xgboost")
