@@ -8,7 +8,6 @@ export(changeSaveFile)
 export(getBestPars)
 export(getLocalOptimums)
 export(updateGP)
-import(foreach)
 importFrom(DiceKriging,km)
 importFrom(data.table,
   ".SD",
@@ -26,6 +25,12 @@ importFrom(data.table,
   uniqueN
 )
 importFrom(dbscan,dbscan)
+importFrom(foreach,
+  "%do%",
+  "%dopar%",
+  foreach,
+  getDoParWorkers
+)
 importFrom(ggplot2,
   .data,
   aes,
