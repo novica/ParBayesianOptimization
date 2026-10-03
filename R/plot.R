@@ -83,10 +83,14 @@ plot.bayesOpt <- function(x, ...) {
       )
     )
 
-  # Arguments in ... override the layout defaults; unnamed ones are kept.
+  # Arguments in ... override the layout defaults; unnamed ones are kept and
+  # abbreviated names count as the plot_layout() argument they match.
   layoutArgs <- list(...)
+  given <- names(formals(plot_layout))[
+    pmatch(names(layoutArgs), names(formals(plot_layout)))
+  ]
   defaults <- list(ncol = 1, guides = "collect")
-  defaults <- defaults[setdiff(names(defaults), names(layoutArgs))]
+  defaults <- defaults[setdiff(names(defaults), given)]
 
   p <- (sc / ut) +
     do.call(plot_layout, c(defaults, layoutArgs)) +
