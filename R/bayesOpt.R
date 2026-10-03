@@ -246,6 +246,8 @@ bayesOpt <- function(
     verbose
   )
 
+  checkKmArgs(...)
+
   # Formatting
   boundsDT <- boundsToDT(bounds)
   otherHalting <- formatOtherHalting(otherHalting)

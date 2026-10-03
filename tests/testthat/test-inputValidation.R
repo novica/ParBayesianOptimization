@@ -77,3 +77,19 @@ test_that("addIterations() rejects objects it cannot continue", {
   expect_error(addIterations(unclass(optObj)), "must be of class bayesOpt")
   expect_error(addIterations(optObj, verbose = 0), "Not enough samples")
 })
+
+test_that("misspelled arguments are caught before FUN runs", {
+  calls <- 0
+  countingFUN <- function(x, y) {
+    calls <<- calls + 1
+    list(Score = -(x^2 + y^2))
+  }
+
+  expect_error(
+    bayesOpt(countingFUN, bounds, initPoints = 3, iter.n = 2, verbose = 0),
+    "does not accept: iter.n"
+  )
+  expect_equal(calls, 0)
+  expect_error(checkKmArgs(1), "<unnamed>")
+  expect_no_error(checkKmArgs(nugget = 1e-8, covtype = "gauss"))
+})

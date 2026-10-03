@@ -87,6 +87,8 @@ addIterations <- function(
     verbose
   )
 
+  checkKmArgs(...)
+
   optObj$stopStatus <- "OK"
   optObj <- changeSaveFile(optObj, saveFile)
   otherHalting <- formatOtherHalting(otherHalting)
