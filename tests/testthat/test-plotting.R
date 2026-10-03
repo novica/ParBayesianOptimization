@@ -33,6 +33,7 @@ test_that("plot() arguments override the layout defaults", {
   )
 
   expect_s3_class(plot(optObj, ncol = 2, guides = "keep"), "patchwork")
+  expect_s3_class(plot(optObj, 2), "patchwork")
 })
 
 test_that("plotProgress = TRUE plots during the run", {

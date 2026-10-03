@@ -83,11 +83,13 @@ plot.bayesOpt <- function(x, ...) {
       )
     )
 
+  # Arguments in ... override the layout defaults; unnamed ones are kept.
+  layoutArgs <- list(...)
+  defaults <- list(ncol = 1, guides = "collect")
+  defaults <- defaults[setdiff(names(defaults), names(layoutArgs))]
+
   p <- (sc / ut) +
-    do.call(
-      plot_layout,
-      utils::modifyList(list(ncol = 1, guides = "collect"), list(...))
-    ) +
+    do.call(plot_layout, c(defaults, layoutArgs)) +
     plot_annotation(
       title = "Bayesian Optimization Results",
       theme = theme(plot.title = element_text(hjust = 0.5))
