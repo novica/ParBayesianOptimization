@@ -32,7 +32,13 @@ test_that("plot() arguments override the layout defaults", {
     class = "bayesOpt"
   )
 
-  expect_s3_class(plot(optObj, ncol = 2, guides = "keep"), "patchwork")
+  # patchwork has no public accessor for the layout, so read it directly.
+  layout <- function(p) p$patches$layout
+  expect_equal(layout(plot(optObj))$ncol, 1)
+  expect_equal(layout(plot(optObj, ncol = 2, guides = "keep"))$ncol, 2)
+  expect_equal(layout(plot(optObj, ncol = 2, guides = "keep"))$guides, "keep")
+  expect_equal(layout(plot(optObj, nc = 2))$ncol, 2)
+  expect_equal(layout(plot(optObj, 2))$nrow, 2)
 })
 
 test_that("plotProgress = TRUE plots during the run", {
