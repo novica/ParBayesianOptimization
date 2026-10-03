@@ -4,7 +4,8 @@
 #' The bottom shows the utility from each point before the search took place.
 #'
 #' @param x An object of class bayesOpt
-#' @param ... Passed to \code{patchwork::plot_layout()}.
+#' @param ... Passed to \code{patchwork::plot_layout()}, overriding the
+#'   defaults \code{ncol = 1} and \code{guides = "collect"}.
 #' @importFrom ggplot2 ggplot aes .data xlab scale_color_discrete geom_point theme guides guide_legend margin element_text unit xlim ylab
 #' @importFrom patchwork plot_layout plot_annotation
 #' @importFrom graphics plot
@@ -83,7 +84,10 @@ plot.bayesOpt <- function(x, ...) {
     )
 
   p <- (sc / ut) +
-    plot_layout(ncol = 1, guides = "collect", ...) +
+    do.call(
+      plot_layout,
+      utils::modifyList(list(ncol = 1, guides = "collect"), list(...))
+    ) +
     plot_annotation(
       title = "Bayesian Optimization Results",
       theme = theme(plot.title = element_text(hjust = 0.5))
