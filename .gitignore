@@ -49,3 +49,5 @@ po/*~
 rsconnect/
 docs
 .positai
+# roborev snapshots
+/.roborev/
