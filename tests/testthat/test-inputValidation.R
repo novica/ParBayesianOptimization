@@ -94,6 +94,10 @@ test_that("misspelled arguments are caught before FUN runs", {
   expect_equal(calls, 0)
   expect_error(checkKmArgs(1), "<unnamed>")
   expect_no_error(checkKmArgs(nugget = 1e-8, covtype = "gauss"))
+  expect_no_error(checkKmArgs(covt = "gauss", noise = rep(0.1, 3)))
+  expect_error(checkKmArgs(nug = 1e-8), "does not accept: nug")
+  expect_error(checkKmArgs(co = 1), "does not accept: co")
+  expect_error(checkKmArgs(control = list()), "does not accept: control")
 })
 
 test_that("bayesOpt() lists the acquisition functions", {
