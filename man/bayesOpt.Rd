@@ -8,8 +8,8 @@ bayesOpt(
   FUN,
   bounds,
   saveFile = NULL,
-  initGrid,
-  initPoints = 4,
+  initGrid = NULL,
+  initPoints = NULL,
   iters.n = 3,
   iters.k = 1,
   otherHalting = list(timeLimit = Inf, minUtility = 0),
@@ -42,10 +42,13 @@ specifies the location to save results as they are obtained. A \code{bayesOpt}
 object is saved to the file after each epoch.}
 
 \item{initGrid}{user specified points to sample the scoring function, should
-be a \code{data.frame} or \code{data.table} with identical column names as bounds.}
+be a \code{data.frame} or \code{data.table} with identical column names as bounds.
+Provide exactly one of \code{initGrid} and \code{initPoints}.}
 
 \item{initPoints}{Number of points to initialize the process with. Points are
-chosen with latin hypercube sampling within the bounds supplied.}
+chosen with latin hypercube sampling within the bounds supplied. Must be
+greater than the number of \code{FUN} inputs. Provide exactly one of
+\code{initGrid} and \code{initPoints}.}
 
 \item{iters.n}{The total number of times FUN will be run after initialization.}
 

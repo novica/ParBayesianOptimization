@@ -19,8 +19,11 @@
 #'   object is saved to the file after each epoch.
 #' @param initGrid user specified points to sample the scoring function, should
 #'   be a \code{data.frame} or \code{data.table} with identical column names as bounds.
+#'   Provide exactly one of \code{initGrid} and \code{initPoints}.
 #' @param initPoints Number of points to initialize the process with. Points are
-#'   chosen with latin hypercube sampling within the bounds supplied.
+#'   chosen with latin hypercube sampling within the bounds supplied. Must be
+#'   greater than the number of \code{FUN} inputs. Provide exactly one of
+#'   \code{initGrid} and \code{initPoints}.
 #' @param iters.n The total number of times FUN will be run after initialization.
 #' @param iters.k integer that specifies the number of times to sample FUN
 #'   at each Epoch (optimization step). If running in parallel, good practice
@@ -200,8 +203,8 @@ bayesOpt <- function(
   FUN,
   bounds,
   saveFile = NULL,
-  initGrid,
-  initPoints = 4,
+  initGrid = NULL,
+  initPoints = NULL,
   iters.n = 3,
   iters.k = 1,
   otherHalting = list(timeLimit = Inf, minUtility = 0),
@@ -253,10 +256,10 @@ bayesOpt <- function(
   otherHalting <- formatOtherHalting(otherHalting)
 
   # Initialization Setup
-  if (missing(initGrid) + missing(initPoints) != 1) {
+  if (is.null(initGrid) == is.null(initPoints)) {
     stop("Please provide 1 of initGrid or initPoints, but not both.")
   }
-  if (!missing(initGrid)) {
+  if (!is.null(initGrid)) {
     setDT(initGrid)
     inBounds <- checkBounds(initGrid, bounds)
     inBounds <- as.logical(apply(inBounds, 1, prod))
