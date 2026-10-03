@@ -15,7 +15,24 @@ test_that("plot() stacks the score and utility plots", {
   p <- plot(optObj)
 
   expect_s3_class(p, "patchwork")
-  expect_length(p$patches$plots, 1)
+  expect_length(p, 2)
+})
+
+test_that("plot() arguments override the layout defaults", {
+  optObj <- structure(
+    list(
+      optPars = list(acq = "ucb"),
+      scoreSummary = data.table::data.table(
+        Epoch = c(0, 0, 1, 2),
+        Score = c(1, 2, 3, 2.5),
+        gpUtility = c(NA, NA, 0.8, 0.6),
+        acqOptimum = c(FALSE, FALSE, TRUE, TRUE)
+      )
+    ),
+    class = "bayesOpt"
+  )
+
+  expect_s3_class(plot(optObj, ncol = 2, guides = "keep"), "patchwork")
 })
 
 test_that("plotProgress = TRUE plots during the run", {

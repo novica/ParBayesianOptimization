@@ -9,7 +9,8 @@
 \arguments{
 \item{x}{An object of class bayesOpt}
 
-\item{...}{Passed to \code{patchwork::plot_layout()}.}
+\item{...}{Passed to \code{patchwork::plot_layout()}, overriding the
+defaults \code{ncol = 1} and \code{guides = "collect"}.}
 }
 \value{
 A \code{patchwork} object, returned invisibly after printing.
