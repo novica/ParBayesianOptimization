@@ -118,15 +118,13 @@ addIterations <- function(
   inBounds <- checkBounds(optObj$scoreSummary, bounds)
   scoreSummary$inBounds <- as.logical(apply(inBounds, 1, prod))
   if (!all(scoreSummary$inBounds)) {
-    message(
-      "Bounds have been tightened. There are ",
+    warning(
+      "Bounds have been tightened. ",
       sum(!scoreSummary$inBounds),
-      " parameter pairs in scoreSummary which cannot",
-      " be used with the defined bounds. These will be",
-      " ignored this round. Continue? [y/n]"
+      " parameter sets in scoreSummary are outside the new bounds",
+      " and will be ignored this round.",
+      call. = FALSE
     )
-    line <- readline()
-    if (tolower(line) == "y") invisible() else stop("Process Stopped by User.")
   }
   if (nrow(scoreSummary) <= 2) {
     stop("Not enough samples in scoreSummary to perform optimizations.")

@@ -66,3 +66,28 @@ test_that("bayesOpt() leaves the user's sinks open", {
 
   expect_equal(readLines(log), "after bayesOpt")
 })
+
+test_that("tighter bounds in addIterations() warn instead of prompting", {
+  skip_on_cran()
+  set.seed(1991)
+
+  optObj <- bayesOpt(
+    function(x) list(Score = -x^2),
+    list(x = c(-5, 5)),
+    initPoints = 6,
+    iters.n = 1,
+    verbose = 0
+  )
+
+  expect_warning(
+    optObj <- addIterations(
+      optObj,
+      bounds = list(x = c(-3, 3)),
+      iters.n = 1,
+      verbose = 0
+    ),
+    "Bounds have been tightened"
+  )
+  expect_equal(optObj$stopStatus, "OK")
+  expect_equal(nrow(optObj$scoreSummary), 8)
+})
