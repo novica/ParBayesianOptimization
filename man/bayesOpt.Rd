@@ -13,7 +13,7 @@ bayesOpt(
   iters.n = 3,
   iters.k = 1,
   otherHalting = list(timeLimit = Inf, minUtility = 0),
-  acq = "ucb",
+  acq = c("ucb", "ei", "eips", "poi"),
   kappa = 2.576,
   eps = 0,
   parallel = FALSE,
@@ -65,7 +65,7 @@ for this process. Must be lower than, and preferrably some multiple of \code{ite
   \code{minUtility}.
 }}
 
-\item{acq}{acquisition function type to be used. Can be "ucb", "ei", "eips" or "poi".
+\item{acq}{acquisition function type to be used. One of "ucb" (the default), "ei", "eips" or "poi".
 \itemize{
   \item \code{ucb}   Upper Confidence Bound
   \item \code{ei}    Expected Improvement

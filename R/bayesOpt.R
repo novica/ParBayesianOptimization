@@ -36,7 +36,7 @@
 #'   \item The utility expected from the Gaussian process is less than the list element
 #'   \code{minUtility}.
 #' }
-#' @param acq acquisition function type to be used. Can be "ucb", "ei", "eips" or "poi".
+#' @param acq acquisition function type to be used. One of "ucb" (the default), "ei", "eips" or "poi".
 #' \itemize{
 #'   \item \code{ucb}   Upper Confidence Bound
 #'   \item \code{ei}    Expected Improvement
@@ -208,7 +208,7 @@ bayesOpt <- function(
   iters.n = 3,
   iters.k = 1,
   otherHalting = list(timeLimit = Inf, minUtility = 0),
-  acq = "ucb",
+  acq = c("ucb", "ei", "eips", "poi"),
   kappa = 2.576,
   eps = 0.0,
   parallel = FALSE,
@@ -221,6 +221,7 @@ bayesOpt <- function(
   ...
 ) {
   startT <- Sys.time()
+  acq <- match.arg(acq)
 
   # Construct bayesOpt list
   optObj <- list()
