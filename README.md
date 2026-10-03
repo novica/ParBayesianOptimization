@@ -5,9 +5,7 @@
 [![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/mltools)](https://CRAN.R-project.org/package=ParBayesianOptimization)
 [![Coverage Status](https://codecov.io/gh/novica/ParBayesianOptimization/branch/main/graph/badge.svg)](https://app.codecov.io/gh/novica/ParBayesianOptimization/branch/main)
 
-# Parallelizable Bayesian Optimization
-
-<img src='man/figures/logo.png' align = 'right' height="300" />
+# Parallelizable Bayesian Optimization <img src="man/figures/logo.png" align="right" height="139" alt="ParBayesianOptimization logo" />
 
 > **Note:** CRAN archived [this package](https://github.com/AnotherSamWilson/ParBayesianOptimization) on 2026-01-12 ("issues were not
 > corrected despite reminders") — the fatal check failure was a vignette

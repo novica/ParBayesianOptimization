@@ -4,10 +4,9 @@ template:
   bootstrap: 5
   bootswatch: simplex
 development:
-  mode: auto
+  mode: release
 
 home:
-  strip_header: true
   links:
   - text: <i class="fas fa-question-circle"></i> Help and discussions
     href: https://github.com/novica/ParBayesianOptimization/discussions
