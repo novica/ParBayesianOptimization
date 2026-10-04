@@ -118,11 +118,13 @@ addIterations <- function(
   inBounds <- checkBounds(optObj$scoreSummary, bounds)
   scoreSummary$inBounds <- as.logical(apply(inBounds, 1, prod))
   if (!all(scoreSummary$inBounds)) {
+    nOut <- sum(!scoreSummary$inBounds)
     warning(
-      "Bounds have been tightened. ",
-      sum(!scoreSummary$inBounds),
-      " parameter sets in scoreSummary are outside the new bounds",
-      " and will be ignored this round.",
+      cli::format_inline(
+        "Bounds have been tightened. {nOut} parameter set{?s} in ",
+        "scoreSummary {?is/are} outside the new bounds and will be ignored ",
+        "this round."
+      ),
       call. = FALSE
     )
   }
