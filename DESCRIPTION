@@ -22,11 +22,10 @@ Imports:
     dbscan,
     DiceKriging,
     foreach,
-    ggplot2 (>= 3.3.0),
     graphics,
     lhs,
-    patchwork,
     stats,
+    tinyplot (>= 0.8.0),
     utils
 Suggests: 
     knitr,

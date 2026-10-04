@@ -31,27 +31,7 @@ importFrom(foreach,
   foreach,
   getDoParWorkers
 )
-importFrom(ggplot2,
-  .data,
-  aes,
-  element_text,
-  geom_point,
-  ggplot,
-  guide_legend,
-  guides,
-  margin,
-  scale_color_discrete,
-  theme,
-  unit,
-  xlab,
-  xlim,
-  ylab
-)
 importFrom(graphics,plot)
-importFrom(patchwork,
-  plot_annotation,
-  plot_layout
-)
 importFrom(stats,
   dnorm,
   optim,
@@ -59,8 +39,10 @@ importFrom(stats,
   predict,
   rnorm
 )
+importFrom(tinyplot,tinyplot)
 importFrom(utils,
   capture.output,
   head,
+  modifyList,
   tail
 )

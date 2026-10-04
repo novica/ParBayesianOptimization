@@ -9,14 +9,15 @@
 \arguments{
 \item{x}{An object of class bayesOpt}
 
-\item{...}{Passed to \code{patchwork::plot_layout()}, overriding the
-defaults \code{ncol = 1} and \code{guides = "collect"}.}
+\item{...}{Named arguments passed to \code{tinyplot::tinyplot()},
+overriding the defaults. List arguments such as \code{facet.args} and
+\code{legend} are merged with the defaults rather than replacing them.}
 }
 \value{
-A \code{patchwork} object, returned invisibly after printing.
+\code{x}, invisibly. The plot is drawn on the current device.
 }
 \description{
-Returns 2 stacked plots - the top shows the results from FUN at each iteration.
+Draws 2 stacked plots - the top shows the results from FUN at each iteration.
 The bottom shows the utility from each point before the search took place.
 }
 \examples{

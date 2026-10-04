@@ -157,12 +157,9 @@ simpleFunction <- function(x) dnorm(x,3,2)*1.5 + dnorm(x,7,1) + dnorm(x,10,2)
 xmax <- optim(8,simpleFunction,method = "L-BFGS-B",lower = 0, upper = 15,control = list(fnscale = -1))$par
 
 # Get a visual
-library(ggplot2)
-ggplot(data = data.frame(x=c(0,15)),aes(x=x)) + 
-  stat_function(fun = simpleFunction) +
-  geom_vline(xintercept = xmax,linetype="dashed") +
-  ggtitle("simpleFunction") +
-  theme_bw()
+library(tinyplot)
+tinyplot(x = c(0, 15), type = type_function(simpleFunction), xlab = "x", ylab = "simpleFunction(x)")
+tinyplot_add(type = type_vline(xmax), lty = 2)
 ```
 
 ![](man/figures/README-simpleFunction-1.png)<!-- -->

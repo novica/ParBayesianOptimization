@@ -1,5 +1,5 @@
-test_that("plot() stacks the score and utility plots", {
-  optObj <- structure(
+optObj <- function() {
+  structure(
     list(
       optPars = list(acq = "ucb"),
       scoreSummary = data.table::data.table(
@@ -11,34 +11,32 @@ test_that("plot() stacks the score and utility plots", {
     ),
     class = "bayesOpt"
   )
+}
 
-  p <- plot(optObj)
+test_that("plot() draws and returns the object invisibly", {
+  obj <- optObj()
 
-  expect_s3_class(p, "patchwork")
-  expect_length(p, 2)
+  expect_invisible(plot(obj))
+  expect_identical(plot(obj), obj)
 })
 
-test_that("plot() arguments override the layout defaults", {
-  optObj <- structure(
-    list(
-      optPars = list(acq = "ucb"),
-      scoreSummary = data.table::data.table(
-        Epoch = c(0, 0, 1, 2),
-        Score = c(1, 2, 3, 2.5),
-        gpUtility = c(NA, NA, 0.8, 0.6),
-        acqOptimum = c(FALSE, FALSE, TRUE, TRUE)
-      )
-    ),
-    class = "bayesOpt"
+test_that("plot() arguments override the defaults", {
+  captured <- NULL
+  local_mocked_bindings(
+    tinyplot = function(...) captured <<- list(...)
   )
 
-  # patchwork has no public accessor for the layout, so read it directly.
-  layout <- function(p) p$patches$layout
-  expect_equal(layout(plot(optObj))$ncol, 1)
-  expect_equal(layout(plot(optObj, ncol = 2, guides = "keep"))$ncol, 2)
-  expect_equal(layout(plot(optObj, ncol = 2, guides = "keep"))$guides, "keep")
-  expect_equal(layout(plot(optObj, nc = 2))$ncol, 2)
-  expect_equal(layout(plot(optObj, 2))$nrow, 2)
+  plot(optObj())
+  expect_equal(captured$main, "Bayesian Optimization Results")
+  expect_equal(captured$facet.args, list(nrow = 2, free = TRUE))
+
+  plot(optObj(), main = "Custom", facet.args = list(nrow = 1))
+  expect_equal(captured$main, "Custom")
+  expect_equal(captured$facet.args, list(nrow = 1, free = TRUE))
+})
+
+test_that("plot() rejects unnamed arguments", {
+  expect_error(plot(optObj(), 2), "must be named")
 })
 
 test_that("plotProgress = TRUE plots during the run", {
