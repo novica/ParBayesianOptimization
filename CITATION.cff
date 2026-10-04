@@ -16,7 +16,7 @@ authors:
     given-names: Novica
     email: nnovica@gmail.com
 version: 1.4.0 # x-release-please-version
-date-released: 2026-09-20
+date-released: 2026-10-04
 license: GPL-2.0-only
 url: "https://novica.github.io/ParBayesianOptimization/"
 repository-code: "https://github.com/novica/ParBayesianOptimization"
