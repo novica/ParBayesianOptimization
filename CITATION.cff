@@ -15,12 +15,14 @@ authors:
   - family-names: Nakov
     given-names: Novica
     email: nnovica@gmail.com
+    orcid: "https://orcid.org/0009-0005-7773-7718"
 version: 1.4.0 # x-release-please-version
 date-released: 2026-10-04
 license: GPL-2.0-only
 url: "https://novica.github.io/ParBayesianOptimization/"
 repository-code: "https://github.com/novica/ParBayesianOptimization"
 repository: "https://CRAN.R-project.org/package=ParBayesianOptimization"
+doi: 10.32614/CRAN.package.ParBayesianOptimization
 keywords:
   - R
   - bayesian-optimization
