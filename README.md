@@ -1,6 +1,6 @@
 
 
-[![R-CMD-check](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml)
+[![R-CMD-check](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml/badge.svg?branch=main)](https://github.com/novica/ParBayesianOptimization/actions/workflows/R-CMD-check.yml)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ParBayesianOptimization)](https://CRAN.R-project.org/package=ParBayesianOptimization)
 [![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ParBayesianOptimization)](https://CRAN.R-project.org/package=ParBayesianOptimization)
 [![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.ParBayesianOptimization-blue)](https://doi.org/10.32614/CRAN.package.ParBayesianOptimization)
