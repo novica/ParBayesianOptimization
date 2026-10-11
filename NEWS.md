@@ -1,3 +1,14 @@
+# ParBayesianOptimization 1.4.1
+
+## Bug fixes
+
+* use singular wording in the addIterations() bounds warning ([#50](https://github.com/novica/ParBayesianOptimization/issues/50)) ([382d7f2](https://github.com/novica/ParBayesianOptimization/commit/382d7f235ad796e84cad687f6f2df408a4a169d1))
+
+
+## Documentation
+
+* add an R CITATION file, ORCID and the CRAN DOI ([#54](https://github.com/novica/ParBayesianOptimization/issues/54)) ([86c0d4e](https://github.com/novica/ParBayesianOptimization/commit/86c0d4e2665f71121ab0fbc7590f761ec4e510b7))
+
 # ParBayesianOptimization 1.4.0
 
 ## New features
