@@ -97,6 +97,43 @@ test_that("tighter bounds in addIterations() warn and exclude rows from the GP",
   expect_equal(optObj$GauProList$scoreGP@n, sum(fitRows$inBounds))
 })
 
+test_that("the tightened-bounds warning matches the number of rows", {
+  skip_on_cran()
+  set.seed(1991)
+
+  optObj <- bayesOpt(
+    function(x) list(Score = -x^2),
+    list(x = c(-5, 5)),
+    initGrid = data.frame(x = c(-5, -4, -1, 0, 1, 4)),
+    iters.n = 1,
+    verbose = 0
+  )
+  outside <- function(lower) sum(optObj$scoreSummary$x < lower)
+  expect_equal(outside(-4.5), 1)
+  expect_equal(outside(-3.5), 2)
+
+  expect_warning(
+    addIterations(
+      optObj,
+      bounds = list(x = c(-4.5, 5)),
+      iters.n = 1,
+      verbose = 0
+    ),
+    "1 parameter set in scoreSummary is outside",
+    fixed = TRUE
+  )
+  expect_warning(
+    addIterations(
+      optObj,
+      bounds = list(x = c(-3.5, 5)),
+      iters.n = 1,
+      verbose = 0
+    ),
+    "2 parameter sets in scoreSummary are outside",
+    fixed = TRUE
+  )
+})
+
 test_that("addIterations() refits a GP that was up to date when bounds change", {
   skip_on_cran()
   set.seed(1991)
