@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/novica/ParBayesianOptimization/compare/v1.4.1...v1.4.2) (2026-10-16)
+
+
+### Documentation
+
+* move README badges below title ([#58](https://github.com/novica/ParBayesianOptimization/issues/58)) ([b5e31c0](https://github.com/novica/ParBayesianOptimization/commit/b5e31c00d8ab6c751c10d0ced27b35df589a87d9))
+
 ## [1.4.1](https://github.com/novica/ParBayesianOptimization/compare/v1.4.0...v1.4.1) (2026-10-11)
 
 
