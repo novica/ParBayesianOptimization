@@ -1,3 +1,9 @@
+# ParBayesianOptimization 1.4.2
+
+## Documentation
+
+* move README badges below title ([#58](https://github.com/novica/ParBayesianOptimization/issues/58)) ([b5e31c0](https://github.com/novica/ParBayesianOptimization/commit/b5e31c00d8ab6c751c10d0ced27b35df589a87d9))
+
 # ParBayesianOptimization 1.4.1
 
 ## Bug fixes
