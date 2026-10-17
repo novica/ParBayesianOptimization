@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/novica/ParBayesianOptimization/compare/v1.4.2...v1.4.3) (2026-10-17)
+
+
+### Documentation
+
+* address CRAN extra checks ([#62](https://github.com/novica/ParBayesianOptimization/issues/62)) ([275341f](https://github.com/novica/ParBayesianOptimization/commit/275341fcdc7c2c1369a126d791eefb508216e18e))
+
 ## [1.4.2](https://github.com/novica/ParBayesianOptimization/compare/v1.4.1...v1.4.2) (2026-10-16)
 
 
