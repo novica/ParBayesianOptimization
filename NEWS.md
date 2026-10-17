@@ -1,3 +1,9 @@
+# ParBayesianOptimization 1.4.3
+
+## Documentation
+
+* address CRAN extra checks ([#62](https://github.com/novica/ParBayesianOptimization/issues/62)) ([275341f](https://github.com/novica/ParBayesianOptimization/commit/275341fcdc7c2c1369a126d791eefb508216e18e))
+
 # ParBayesianOptimization 1.4.2
 
 ## Documentation
