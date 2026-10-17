@@ -45,6 +45,7 @@ test_that("1 Input, Different Specifications", {
 
 test_that("bayesOpt() leaves the user's sinks open", {
   skip_on_cran()
+  skip_if_not_installed("withr")
 
   log <- withr::local_tempfile()
   outerSinks <- sink.number()
