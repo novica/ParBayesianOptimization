@@ -27,6 +27,7 @@ Imports:
     graphics,
     lhs,
     patchwork,
+    rlang,
     stats,
     utils
 Suggests: 
