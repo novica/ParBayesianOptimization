@@ -43,19 +43,23 @@ article on TDS](https://towardsdatascience.com/a-parallel-implementation-of-baye
 
 ## Installation
 
-You can install the most recent stable version of
-`ParBayesianOptimization` from CRAN with:
+### From CRAN
 
 ``` r
 install.packages("ParBayesianOptimization")
 ```
 
-You can install the development version of `ParBayesianOptimization` from 
-GitHub with:
+### From GitHub 
 
 ``` r
 # install.packages("pak")
 pak::pak("novica/ParBayesianOptimization")
+```
+
+### From R-Universe
+
+``` r
+install.packages('ParBayesianOptimization', repos = c('https://novica.r-universe.dev'))
 ```
 
 ## Package Process
